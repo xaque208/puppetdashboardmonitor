@@ -1,0 +1,20 @@
+#! /usr/bin/env ruby
+
+require 'json'
+require 'yaml'
+require 'puppetdashboardmonitoring'
+
+def run
+
+  config = YAML::load(File.read('etc/dashboard.yaml'))
+
+  data = Hash.new
+  data = PuppetDashboardMonitoring.go(config)
+  data
+
+end
+
+output = run()
+puts output.to_json
+
+
