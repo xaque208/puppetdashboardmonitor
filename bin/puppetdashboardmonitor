@@ -17,4 +17,3 @@ end
 output = run()
 puts output.to_json
 
-
