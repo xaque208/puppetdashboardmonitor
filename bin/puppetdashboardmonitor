@@ -1,15 +1,20 @@
 #! /usr/bin/env ruby
 
-require 'json'
-require 'yaml'
-require 'puppetdashboardmonitoring'
+begin
+  require 'json'
+  require 'yaml'
+  require 'puppetdashboardmonitoring'
+rescue LoadError
+  puts 'A required gem was not found'
+  exit
+end
 
 def run
 
   config = YAML::load(File.read('etc/dashboard.yaml'))
 
   data = Hash.new
-  data = PuppetDashboardMonitoring.go(config)
+  data[:puppetdashboard] = PuppetDashboardMonitoring.go(config)
   data
 
 end
