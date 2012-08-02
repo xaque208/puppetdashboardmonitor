@@ -3,13 +3,34 @@
 begin
   require 'json'
   require 'yaml'
+  require 'optparse'
   require 'puppetdashboardmonitoring'
 rescue LoadError
   puts 'A required gem was not found'
   exit
 end
 
-def run
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: puppetdashboardmonitor [options]"
+
+  opts.on("-v", "--verbose", "Be less quiet") do |v|
+    options[:verbose] = v
+  end
+
+  opts.on("-c", "--config FILE", "Specify the configuration file") do |conf|
+    options[:configfile] = conf
+  end
+
+end.parse!
+
+def run (options)
+
+  if options[:configfile].nil?
+    configfile = 'etc/dashboard.yaml'
+  else
+    configfile = options[:configfile]
+  end
 
   config = YAML::load(File.read('etc/dashboard.yaml'))
 
@@ -19,6 +40,6 @@ def run
 
 end
 
-output = run()
+output = run(options)
 puts output.to_json
 
