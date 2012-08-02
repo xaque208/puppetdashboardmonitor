@@ -1,8 +1,13 @@
 #! /usr/bin/env ruby
 
-require 'json'
-require 'yaml'
-require 'puppetdashboardmonitoring'
+begin
+  require 'json'
+  require 'yaml'
+  require 'puppetdashboardmonitoring'
+rescue LoadError
+  puts 'A required gem was not found'
+  exit
+end
 
 def run
 
