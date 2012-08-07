@@ -11,6 +11,8 @@ module PuppetDashboardMonitoring
     data[:nodes][:total]        = get_json("#{@config[:url]}/nodes.json").count
     data[:nodes][:changed]      = get_json("#{@config[:url]}/nodes/changed.json").count
     data[:nodes][:unresponsive] = get_json("#{@config[:url]}/nodes/unresponsive.json").count
+    data[:nodes][:failed]       = get_json("#{@config[:url]}/nodes/failed.json").count
+    data[:nodes][:pending]      = get_json("#{@config[:url]}/nodes/pending.json").count
     data
   end
 
