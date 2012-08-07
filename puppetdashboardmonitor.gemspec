@@ -1,7 +1,7 @@
 Gem::Specification.new do |gem|
 
   gem.name    = 'puppetdashboardmonitor'
-  gem.version = '0.0.3'
+  gem.version = '0.0.4'
   gem.date    = Date.today.to_s
 
   gem.summary     = "A tool to get the highlights from the Puppet Dashboard"
